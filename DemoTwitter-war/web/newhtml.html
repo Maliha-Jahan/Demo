@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+        <script src="semantic/dist/semantic.min.js"></script>
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+              
+    </head>
+    <body>
+        <!--23<div class="ui left icon action input">
+                    <h:form>
+                        <h:inputText id="email" readonly="true" value="#{homeController.retrieve()}" style="display:none"/>
+                        <div class="ui fluid action input" style="width: 80%">
+                            <h:inputText id="key" style="width: 80%" value="#{homeController.initialKey}" title="key" required="true" requiredMessage="The Search field is required." a:placeholder="Search People"></h:inputText>
+                            <h:commandButton class="ui button" value="Search" action="#{homeController.search()}" style="background: none; border: none; width: 20%"></h:commandButton>
+                        </div>
+                    </h:form>
+                    <br></br><br></br><br></br>
+                </div>-->
+        <!--67<f:facet name="header">Display Name</f:facet>
+                                <h:outputText value="#{u.displayName}"></h:outputText>
+                            </h:column>
+                            <h:column>
+                                <h:commandButton class="ui button" value="Follow" action="#{homeController.follow()}" rendered="#{!homeController.user.userdbCollection.contains(u)}">
+                                    <f:param name="follow_email" value="#{u.email}"/>
+                                </h:commandButton>
+                                <h:commandButton class="ui button" value="Unfollow" action="#{homeController.unfollow()}" rendered="#{homeController.user.userdbCollection.contains(u)}">
+                                    <f:param name="unfollow_email" value="#{u.email}"/>
+                                </h:commandButton>
+                            </h:column>-->
+       <!--140
+                            <p:column headerText="Display Name" >
+                                <h:outputText value="#{post.email.displayName}" />
+                            </p:column>
+
+                            <p:column headerText="Body" >
+                                <h:outputText value="#{post.postBody}" />
+                            </p:column>
+
+                            <p:column headerText="Color" >
+                                <h:outputText value="#{post.postTime}" />
+                            </p:column>
+                            <p:column headerText="Number of Likes" >
+                                <h:outputText value="#{homeController.numberOfLikes(post)}" />
+                            </p:column>
+                            <p:column headerText=" ">
+                                <div class="ui labeled button" tabindex="0">
+                                    <div class="ui button" >
+                                      <i class="heart icon"></i> 
+                                      <h:commandButton value="Like" action="#{homeController.like()}" 
+                                                       rendered="#{!post.userdbCollection.contains(thisUser)}"
+                                                       class="ui button">
+                                            <f:param name="post_id" value="#{post.postId}"/>
+                                        </h:commandButton>
+                                        <h:commandButton value="Liked" action="#{homeController.removeLike()}"  
+                                                         rendered="#{post.userdbCollection.contains(thisUser)}"
+                                                         class="ui button">
+                                            <f:param name="post_id" value="#{post.postId}"/>
+                                        </h:commandButton>
+                                    </div>
+                                    <a class="ui basic label">
+                                      <h:outputText value="#{homeController.numberOfLikes(post)}" />
+                                    </a>
+                                  </div>
+
+                            </p:column>-->
+       <!--150style="margin-bottom:40px"
+                sortBy="#{post.postTime}"
+                <h:dataTable var="p" value="#{homeController.postdbFacade.findAll()}">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{p.postId}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Body</f:facet>
+                        <h:outputText value="#{p.postBody}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Time</f:facet>
+                        <h:outputText value="#{p.postTime}"></h:outputText>
+                    </h:column>
+                </h:dataTable>
+            
+            <h:form>
+                <h:dataTable var="q" value="#{homeController.user.userdbCollection}">
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        <h:outputText value="#{q.email}"></h:outputText>
+                    </h:column>
+                </h:dataTable>
+            </h:form>-->
+    </body>
+</html>

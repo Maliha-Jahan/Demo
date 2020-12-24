@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Login</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css"></link>
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+        <script src="semantic/dist/semantic.min.js"></script>
+        <script src="https://kit.fontawesome.com/99ca7bfcc0.js" crossorigin="anonymous"></script>
+        <style>
+            .wrap.user:before {
+                font-family: 'FontAwesome';
+                content: '\f007';
+                position: absolute;
+                right: 6px;
+                padding-top: 12px;
+            }
+            .wrap.lock:before {
+                font-family: 'FontAwesome';
+                content: '\f023';
+                position: absolute;
+                right: 6px;
+                padding-top: 12px;
+                color: black;
+            }
+            .wrap {
+                display:inline-block;
+                position: relative
+            }
+            
+        </style>
+    </h:head>
+    <h:body>
+        <f:view>
+            <div class="ui placeholder segment" style="width: auto; height: 100%">
+                <div class="ui two column very relaxed stackable grid">
+                  <div class="column">
+                    <div class="ui form">
+                      <h:form>
+                      <div class="field" style="font-size: 16px">
+                        <label>Username</label>
+                        <div class="ui left icon input">
+                          <div class="wrap user">
+                          <h:inputText id="email" value="#{loginController.user.email}" title="Email" required="true" 
+                                       requiredMessage="The Email field is required." a:placeholder="Email"
+                                       ></h:inputText></div><br></br><br></br>
+                        </div>
+                      </div>
+                      <div class="field" style="font-size: 16px">
+                          <label>Password</label>
+                        <div class="ui left icon input">
+                            <div class="wrap lock">
+                          <h:inputSecret id="password" value="#{loginController.user.password}" title="Password" 
+                                         required="true" requiredMessage="The Email field is required." a:placeholder="Password"
+                                         ></h:inputSecret></div>  <br></br><br></br>
+                        </div>
+                      </div>
+                          <br></br><br></br>
+                      <h:commandButton class="ui blue submit button" value="Login" action="#{loginController.login()}"
+                                       style="width: 200px; font-size: 16px"></h:commandButton>
+                      </h:form>
+                    </div>
+                  </div>
+                  <div class="middle aligned column">
+                      <a href="faces/signup.xhtml">
+                          <div class="ui big button">
+                                Sign Up
+                          </div>
+                      </a>
+                  </div>
+                </div>
+                <div class="ui vertical divider">
+                  Or
+                </div>
+            </div>
+        </f:view>
+        
+
+                    
+                    
+                    
+                
+            
+        
+    </h:body>
+</html>
+

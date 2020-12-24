@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Twitter Home</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css"></link>
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+        <script src="semantic/dist/semantic.min.js"></script>
+        <script src="https://kit.fontawesome.com/99ca7bfcc0.js" crossorigin="anonymous"></script>
+        <style>
+            .wrap.follow{
+                font-family: 'FontAwesome';
+                content: '\f023';
+                position: absolute;
+                right: 6px;
+                padding-top: 12px;
+            }
+            .wrap {
+                display:inline-block;
+                position: relative
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <f:view>
+            <div class="ui center aligned basic segment">
+                <p align="center">
+                    <h:form>
+                        <h:inputText id="email" readonly="true" value="#{homeController.retrieve()}" style="display:none"/>
+                        <div class="ui input focus" style="width: 800px; padding-right: 4px">
+                            <h:inputText id="key" style="width: 80%" value="#{homeController.initialKey}" title="key"
+                                         required="true" requiredMessage="The Search field is required." a:placeholder="Search People"></h:inputText>
+                    </div>
+                    <h:commandButton class="ui button" value="Search" action="#{homeController.search()}"
+                                         style="text-align: center"></h:commandButton>
+                    </h:form>
+                    <br></br><br></br><br></br>
+                </p>
+                <div style="margin-left: 200px; margin-right: 200px" rendered="#{homeController.show}">
+                    <div class="ui segment" rendered="#{homeController.show}">
+                        <h:form rendered="#{homeController.show}" style="padding-top: 10px">
+                        <div class="ui input focus" style="font-size: 18px; padding-left: 60px; padding-right: 5px">
+                            <b>Results</b>
+                        </div>
+                        <h:commandButton class="ui button" value="Clear" action="#{homeController.clear()}"
+                                         style="border: none; background: none; color: steelblue">
+                        </h:commandButton>
+                        <br></br><br></br>
+                        <div class="ui list">
+                            <h:dataTable var="u" value="#{homeController.users}" rendered="#{homeController.show}"
+                                         style="border-left: none; border-right: none; background: none; padding-right: 50px; padding-left: 50px; text-align: left">
+                                <h:column a:style="border-left: none; border-right: none; background: none; text-align: left; padding-top: 10px; padding-bottom: 10px">
+                                    <div class="item">
+                                    <div class="content">
+                                        <img class="ui avatar image" src="items/user_round.png"></img> &nbsp;
+                                        <a class="header" style="font-size: 15px"><h:outputText value="#{u.displayName}"></h:outputText></a>
+                                        <br></br>
+                                        <h:commandButton class="ui button" value="Follow" action="#{homeController.follow()}"
+                                                         rendered="#{!homeController.user.userdbCollection.contains(u)}"
+                                                         style="font-size: 12px; margin-left: 28px">
+                                            <f:param name="follow_email" value="#{u.email}"/>
+                                        </h:commandButton>
+                                        <h:commandButton class="ui button" value="Unfollow" action="#{homeController.unfollow()}"
+                                                         rendered="#{homeController.user.userdbCollection.contains(u)}"
+                                                         style="font-size: 12px; margin-left: 40px">
+                                            <f:param name="unfollow_email" value="#{u.email}"/>
+                                        </h:commandButton>
+                                    </div>
+                                </div>
+                                </h:column>
+                        
+                            </h:dataTable>
+                            <br></br><br></br>
+                        </div>
+                    </h:form>
+                </div>
+                </div>
+                <br></br><br></br><br></br><br></br>
+                <div class="ui horizontal divider">
+                  Make a Tweet
+                </div>
+                <h:form>
+                    <h:commandButton class="ui button" style="color: steelblue; background: none; border: none"
+                                     value="Logout" action="#{homeController.logout()}"></h:commandButton>
+                    <br></br><br></br>
+                    <h3 class="ui header" style="text-align: left; padding-left: 110px">
+                        Hi!&nbsp;
+                        <h:outputText value="#{homeController.user.displayName}"></h:outputText>,   
+                    </h3> &nbsp;&nbsp;&nbsp;
+                    <br></br>
+                    <p align="left" style="padding-left: 110px">
+                        <div class="ui input focus" style="text-align: left; width: 400px; float: left; padding-left: 110px; padding-right: 7px">
+                            <h:inputText id="post" value="#{homeController.post.postBody}" 
+                                             title="Post" required="true" requiredMessage="The Post field is required."
+                                             a:placeholder="What's on your mind?">
+                            </h:inputText>
+                        </div> 
+                        <h:commandButton class="ui button" value="Post" action="#{homeController.makePost()}"
+                                         style="text-align: center; float: left">
+                            <f:param name="retrieved_email" value="#{homeController.user.email}"/>
+                        </h:commandButton>
+                    </p>
+                    <br></br>
+                </h:form>
+                <br></br><br></br><br></br><br></br>
+                <div class="ui horizontal divider">
+                  Your Twitter Feed
+                </div>
+                <div style="margin-left: 200px; margin-right: 200px">
+                <div class="ui segment">
+                    <h:form>
+                        <ui:param name="thisUser" value="#{homeController.user}" />
+                        <div class="ui list">
+                            <h:dataTable var="post" value="#{homeController.feed()}" 
+                                         style="border-left: none; border-right: none; background: none; padding-right: 50px; padding-left: 50px; text-align: left">
+                                <h:column a:style="border-left: none; border-right: none; background: none; text-align: left; padding-top: 10px; padding-bottom: 10px">
+                                <div class="item">
+                                    <img class="ui avatar image" src="items/user_round.png"></img>
+                                    <div class="content">
+                                        <a class="header" style="font-size: 16px"><h:outputText value="#{post.email.displayName}" /></a>&nbsp;&nbsp;says<br></br><br></br>
+                                        <div class="description" style="font-size: 14px">"<h:outputText value="#{post.postBody}" />"</div>
+                                        <div class="description" style="font-size: 12px">at&nbsp;<h:outputText value="#{post.postTime}" /></div>
+                                        <br></br>
+                                        <div class="ui labeled button" tabindex="0">
+                                            <div class="ui button" style="font-size: 12px;">
+                                              <i class="fas fa-heart"></i>
+                                              <h:commandButton value="Like" action="#{homeController.like()}" 
+                                                               rendered="#{!post.userdbCollection.contains(thisUser)}"
+                                                               style="background: none; border: none">
+                                                    <f:param name="post_id" value="#{post.postId}"/>
+                                                </h:commandButton>
+                                              <h:commandButton value="Liked" action="#{homeController.removeLike()}"  
+                                                                 rendered="#{post.userdbCollection.contains(thisUser)}"
+                                                                 style="background: none; border: none">
+                                                    <f:param name="post_id" value="#{post.postId}"/>
+                                                </h:commandButton>
+                                              <br></br>
+                                            </div>
+                                            <a class="ui basic label">
+                                              <h:outputText value="#{homeController.numberOfLikes(post)}"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui clearing divider" style="margin-top: 20px"></div>
+                                </h:column>
+                            
+                        </h:dataTable>
+                        </div>
+                    </h:form>
+                </div>
+                </div>
+            </div> 
+        </f:view>
+    </h:body>
+</html>
+

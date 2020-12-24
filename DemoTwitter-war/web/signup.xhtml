@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <h:head>
+        <title>Sign up for Twitter</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css"></link>
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+        <script src="semantic/dist/semantic.min.js"></script>
+        <script src="https://kit.fontawesome.com/99ca7bfcc0.js" crossorigin="anonymous"></script>
+        
+    </h:head>
+    <h:body>
+        <f:view>
+            <div class="ui placeholder segment" style="width: auto; height: 100%">
+                <div class="ui two column very relaxed stackable grid">
+                  <div class="column">
+                    <div class="ui form">
+                      <h:form>
+                      <div class="field" style="font-size: 16px">
+                        <label>Email</label>
+                        <div class="ui left icon input">
+                            <h:inputText id="email" value="#{signupController.user.email}" title="Email" 
+                                         required="true" requiredMessage="The Email field is required." a:placeholder="Email" 
+                                         ></h:inputText><br></br><br></br>
+                        </div>
+                      </div>
+                      <div class="field" style="font-size: 16px">
+                        <label>Password</label>
+                        <div class="ui left icon input">
+                          <h:inputSecret id="password" value="#{signupController.user.password}" title="Password" required="true" requiredMessage="The Password field is required." a:placeholder="Password"></h:inputSecret><br></br><br></br>
+                        </div>
+                      </div>
+                      <div class="field" style="font-size: 16px">
+                        <label>Display Name</label>
+                        <div class="ui left icon input">
+                          <h:inputText id="display_name" value="#{signupController.user.displayName}" title="Display Name" required="true" requiredMessage="The Display Name field is required." a:placeholder="Unique display name"></h:inputText><br></br><br></br>
+                        </div>
+                      </div>
+                      <div class="field" style="font-size: 16px">
+                        <label>Age</label>
+                        <div class="ui left icon input">
+                          <h:inputText id="age" value="#{signupController.user.age}" title="Age" required="true" requiredMessage="The Age field is required." a:placeholder="Enter your age"></h:inputText><br></br><br></br>
+                        </div>
+                      </div>
+                      <br></br><br></br>
+                      <h:commandButton class="ui blue submit button" value="Signup" action="#{signupController.signup()}"
+                                       style="width: 200px; font-size: 16px"></h:commandButton>
+                      </h:form>
+                    </div>
+                  </div>
+                  <div class="middle aligned column">
+                      <a href="faces/login.xhtml">
+                          <div class="ui big button">
+                                Login
+                            </div>
+                      </a>
+                  </div>
+                </div>
+                <div class="ui vertical divider">
+                  Or
+                </div>
+            </div>
+        </f:view>
+        <f:view>
+            <h:form>
+                    
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
